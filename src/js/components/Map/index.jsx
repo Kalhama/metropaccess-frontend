@@ -81,6 +81,7 @@ const MapC = ({initialYKR, initialMarker, initialSelectedYKR}) => {
                         data={YKR} 
                         eventHandlers={{
                             click: (e) => {
+                                setLoading(true)
                                 setMarker(e.latlng)
                                 setSelectedYKR(e.layer.feature.properties.YKR_ID)
                             }
