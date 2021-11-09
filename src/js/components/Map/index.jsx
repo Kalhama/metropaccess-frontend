@@ -11,7 +11,7 @@ let colormap = require('colormap')
 // TODO select different data
 // TODO select fromId or toID?
 
-const MapC = ({initialYKR, initialMarker, initialSelectedYKR}) => {
+const MapRenderer = ({initialYKR, initialMarker, initialSelectedYKR}) => {
     const [marker, setMarker] = useState(initialMarker)
     const [selectedYKR, setSelectedYKR] = useState(initialSelectedYKR)
     const [YKR, setYKR] = useState(initialYKR)
@@ -27,7 +27,7 @@ const MapC = ({initialYKR, initialMarker, initialSelectedYKR}) => {
     }, [])
 
     const getColor = (val) => {
-        return val !== null ? colors[val] : colors[0]
+        return val !== null ? colors[Math.min(val, 99)] : colors[0]
     }
 
     useEffect(() => {
@@ -109,19 +109,16 @@ export const Map = () => {
 
     return (
         <>
-            
-            
-                <NetworkProvider loading={loading}>
-                    <MapC 
-                        initialYKR={YKR}
-                        initialMarker={{
-                            lat: 60.16815846879989,
-                            lng: 24.931411743164066
-                        }}
-                        initialSelectedYKR={initialSelectedYKR}
-                        />
-                </NetworkProvider>
-
+            <NetworkProvider loading={loading}>
+                <MapRenderer 
+                    initialYKR={YKR}
+                    initialMarker={{
+                        lat: 60.16815846879989,
+                        lng: 24.931411743164066
+                    }}
+                    initialSelectedYKR={initialSelectedYKR}
+                    />
+            </NetworkProvider>
         </>
     )
 }

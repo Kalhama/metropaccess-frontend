@@ -73,7 +73,8 @@ module.exports = (env, argv) => {
                 filename: 'bundle-[contenthash].css'
             }),
             new HtmlWebpackPlugin({
-                template: 'src/index.html'
+                filename: 'index.html',
+                template: 'src/index.ejs'
             })
         ],
         devtool: 'source-map',
