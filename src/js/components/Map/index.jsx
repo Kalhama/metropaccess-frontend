@@ -4,9 +4,6 @@ import Axios from 'axios'
 import { NetworkProvider } from '../NetworkProvider'
 let colormap = require('colormap')
 
-// TODO add to git
-// TODO publish
-// TODO marketing to friends
 
 // TODO select different data
 // TODO select fromId or toID?

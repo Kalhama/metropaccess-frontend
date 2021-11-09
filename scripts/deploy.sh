@@ -1,4 +1,4 @@
-DIR=/var/www/metropaccess.max.kalhama.fi
+DIR=/var/www/metropaccess-visualiser-frontend
 yarn install
 yarn build
-rsync -avh --delete ./build/ max@kuube.fi:$DIR/public_root/
+rsync -avh --delete ./build/ max@metropaccess.max.kalhama.fi:$DIR/public_html/
