@@ -1,5 +1,7 @@
 # Yleistä #
 
+![image of the webpage](example.png)
+
 Visualisoi pääkaupunkiseudun ajallista saavutettavuutta julkisella liikenteellä. Sivusto käyttää Digital Geography Labin saavutettavuus- ja liikkumistutkimuskeskuksen keräämää dataa.
 
 Sivuston tarkoituksena on palvella suljetun mapple.fi-palvelun korvaajana.
