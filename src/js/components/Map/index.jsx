@@ -4,7 +4,6 @@ import Axios from 'axios'
 import { NetworkProvider } from '../NetworkProvider'
 let colormap = require('colormap')
 
-
 // TODO select different data
 // TODO select fromId or toID?
 
@@ -29,18 +28,10 @@ const MapRenderer = ({initialYKR, initialMarker, initialSelectedYKR}) => {
 
     useEffect(() => {
         setLoading(true)
-        Axios.get(`https://api.metropaccess.max.kalhama.fi/travelTimes?to=${selectedYKR}&excludeCols=["walkTime","walkDistance","bikeSlowTime","bikeFastTime","bikeDistance","publicTransportRushhourDistance","publicTransportMiddayWaitingHome","publicTransportMiddayTime","publicTransportMiddayDistance","carRushhourTime","carRushhourDistance","carMiddayTime","carMiddayDistance","carSpeedLimitTime","year"]`)
-            .then(res => {
-                let travelTimes = {}
-                res.data.forEach(el => {
-                    travelTimes[el.fromID] = el
-                })
-                
-                return travelTimes
-            })
-            .then((travelTimes) => {
+        Axios.get(`${process.env.REACT_APP_API_URL}/travelTime?id=${selectedYKR}&column=pt_r_t`)
+            .then(({data}) => {
                 return YKR.map(el => {
-                    el.properties.travelTime = travelTimes[el.properties.YKR_ID].publicTransportRushhourTime
+                    el.properties.travelTime = data[el.properties.YKR_ID]
                     return el
                 })
             })
@@ -62,7 +53,7 @@ const MapRenderer = ({initialYKR, initialMarker, initialSelectedYKR}) => {
                     id={'mapbox/light-v10'}
                     tileSize={512}
                     zoomOffset={-1}
-                    accessToken={'pk.eyJ1Ijoia2FsaGFtYSIsImEiOiJja3NyZGswbnowbGx0MnZvNnV3aXdjcDZyIn0.9gS8fSD7bSVID1vZlcydfA'}
+                    accessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
                     />
                 <Marker position={marker} />
                     <GeoJSON 
@@ -96,7 +87,7 @@ export const Map = () => {
 
     useEffect(() => {
         setLoading(true)
-        Axios.get(`https://api.metropaccess.max.kalhama.fi/YKRGrid`)
+        Axios.get(`${process.env.REACT_APP_API_URL}/YKRgrid`)
             .then(res => {
                 setYKR(res.data.features)
                 setLoading(false)

@@ -6,6 +6,24 @@ Visualisoi pääkaupunkiseudun ajallista saavutettavuutta julkisella liikenteell
 
 Sivuston tarkoituksena on palvella suljetun mapple.fi-palvelun korvaajana.
 
+# Kehitys #
+
+## Ympäristömuuttujat
+
+Sovellus käyttää ympäristömuuttujia konfiguraatioon. Kopioi `.env.example` tiedosto nimellä `.env` ja aseta omat arvot:
+
+```
+REACT_APP_MAPBOX_ACCESS_TOKEN=your_mapbox_access_token_here
+REACT_APP_API_URL=http://localhost:3000
+```
+
+## Kehitysympäristön käynnistys
+
+```
+pnpm install
+pnpm start
+```
+
 # Viitteet #
 
 https://blogs.helsinki.fi/saavutettavuus/
