@@ -77,7 +77,9 @@ module.exports = (env, argv) => {
                 filename: 'index.html',
                 template: 'src/index.ejs'
             }),
-            new Dotenv()
+            new Dotenv({
+                systemvars: true // Load system environment variables in addition to .env
+            })
         ],
         devtool: 'source-map',
         devServer: {
